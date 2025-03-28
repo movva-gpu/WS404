@@ -1,0 +1,200 @@
+@font-face {
+    font-family: "Corethan";
+    src: url("/assets/Corethan.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Corethan";
+    src: url("/assets/Corethan Bold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Corethan";
+    src: url("/assets/Corethan Extra Bold.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+:root {
+    --w-bold: 600;
+    --w-xbold: 800;
+
+    font-family: Corethan;
+    line-height: 1.5;
+    font-weight: var(--w-xbold);
+
+    color-scheme: light;
+    color: #111;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+header {
+    position: relative;
+    height: 100vh;
+    padding-inline: 4em 0;
+    padding-block: 4em;
+
+    & h1 {
+        margin: 0;
+        font-size: 4em;
+        line-height: 1.1;
+        font-weight: var(--w-xbold);
+    }
+
+    & a {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        translate: -50% 50%;
+    }
+}
+
+
+p {
+    font-size: 2em;
+}
+
+.strip {
+    padding-top: 16px;
+    min-height: 100vh;
+
+    @for $i from 1 through 12 {
+        &-#{$i} {
+            background-image: url('./assets/bgs/bg#{$i}.png');
+        }
+    }
+
+    &-12 {
+        mask-image: linear-gradient(to top, transparent, 60%, white 90%);
+    }
+
+
+    & h2 {
+        font-family: Barlow, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 5em;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 16px auto;
+        margin-top: 0;
+
+        width: 960px;
+        border-radius: 8px;
+
+        background: #fffb;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+
+        &.idk {
+            font-family: unset;
+            color: transparent;
+            background-clip: text;
+            -moz-background-clip: text;
+            -webkit-background-clip: text;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+    }
+
+    &-content {
+        width: min-content;
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+}
+
+.blurred {
+    filter: blur(32px);
+    transition: ease-out;
+
+    &:hover {
+        transition: 800ms ease;
+        filter: blur(0);
+    }
+
+    @for $i from 1 through 10 {
+        &-#{$i} {
+            transition-duration: 5s - ($i - 1) * 0.5s;
+            transition-delay: 5s - ($i - 1) * 0.5s;
+        }
+    }
+}
+
+.hint-nav {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+}
+
+#hint {
+    position: relative;
+    appearance: none;
+    background: none;
+    padding: 0;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 200ms;
+
+    cursor: help;
+}
+
+#hint::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+
+    background: #eee;
+    border-radius: 100%;
+
+    z-index: -1;
+}
+
+#hint img {
+    width: 48px;
+    height: 48px;
+}
+
+#hint[aria-hidden=true] {
+    opacity: 0;
+}
+
+.coffee {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 600px;
+    filter: grayscale(.4);
+    z-index: 1;
+}

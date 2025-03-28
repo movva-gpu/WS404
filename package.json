@@ -11,5 +11,9 @@
     "devDependencies": {
         "typescript": "~5.7.2",
         "vite": "^6.2.0"
+    },
+    "dependencies": {
+        "@fontsource/barlow": "^5.2.5",
+        "sass": "^1.86.0"
     }
 }
